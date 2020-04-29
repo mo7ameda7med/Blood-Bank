@@ -47,6 +47,7 @@ public class SliderFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_slider, container, false);
         ButterKnife.bind(this,view);
+        initFragment();
         setupSlider(view);
         return view;
     }

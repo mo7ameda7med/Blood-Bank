@@ -49,6 +49,7 @@ public class ConfirmPasswordFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_confirm_password, container, false);
         apiService= APIClient.getClient().create(ApiService.class);
+        initFragment();
         intiView(view);
         return view;
     }

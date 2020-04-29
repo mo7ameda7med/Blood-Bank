@@ -15,6 +15,8 @@ import com.example.bloodbank.network.models.newPassword.NewPassword;
 import com.example.bloodbank.network.services.ApiService;
 import com.example.bloodbank.util.HelperMethod;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -27,8 +29,8 @@ import retrofit2.Response;
 public class ForgetPasswordFragment extends BaseFragment {
 
 
-    EditText forgetPasswordFragmentETPhone;
-    Button loginFragmentBtnLogin;
+    private EditText forgetPasswordFragmentETPhone;
+    private Button loginFragmentBtnLogin;
     private ApiService apiService;
 
     public ForgetPasswordFragment() {
@@ -69,14 +71,15 @@ public class ForgetPasswordFragment extends BaseFragment {
 
         apiService.resetPassword(resetPassword).enqueue(new Callback<NewPassword>() {
             @Override
-            public void onResponse(Call<NewPassword> call, Response<NewPassword> response) {
+            public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
+                assert response.body() != null;
                 if(response.body().getStatus()==1)
                 {
                 }
             }
 
             @Override
-            public void onFailure(Call<NewPassword> call, Throwable t) {
+            public void onFailure(@NotNull Call<NewPassword> call, @NotNull Throwable t) {
 
             }
         });

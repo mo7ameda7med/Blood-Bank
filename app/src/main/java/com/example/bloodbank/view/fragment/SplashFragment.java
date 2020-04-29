@@ -33,6 +33,7 @@ public class SplashFragment extends BaseFragment {
 
         View view= inflater.inflate(R.layout.fragment_splash, container, false);
 
+        initFragment();
 
         new Handler().postDelayed(new Runnable() {
             @Override

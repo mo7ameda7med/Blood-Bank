@@ -5,14 +5,13 @@ import android.os.Bundle;
 
 
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bloodbank.R;
 import com.example.bloodbank.view.fragment.SplashFragment;
 
 import static com.example.bloodbank.util.HelperMethod.replaceFragment;
 
-public class SplashCycleActivity extends AppCompatActivity {
+public class SplashCycleActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

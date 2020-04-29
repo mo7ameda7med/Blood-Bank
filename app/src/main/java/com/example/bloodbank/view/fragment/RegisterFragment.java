@@ -58,6 +58,7 @@ public class RegisterFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
+        initFragment();
         initView(view);
         getBloodTypes();
         getGovernorates();
@@ -84,7 +85,7 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String title = "Birth Date";
-                DateTxt dateTxt = new DateTxt("01", "01", "1950", "1");
+                DateTxt dateTxt = new DateTxt("01", "01", "1950", "1950-01-01");
                 HelperMethod.showCalender(getContext(), title, registerFragmentETBirthDate, dateTxt);
             }
         });
@@ -92,7 +93,7 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String title = "Donation Last Date";
-                DateTxt dateTxt = new DateTxt("01", "02", "2017", "2");
+                DateTxt dateTxt = new DateTxt("01", "02", "2017", "2017-01-01");
                 HelperMethod.showCalender(getContext(), title, registerFragmentETHistory, dateTxt);
             }
         });
@@ -110,6 +111,7 @@ public class RegisterFragment extends BaseFragment {
                 String city = registerFragmentETCity.getSelectedItem().toString();
                 String Capital = registerFragmentETCapital.getSelectedItem().toString();
                 String BloodTypes = registerFragmentETBloodTypes.getSelectedItem().toString();
+
 
                 register(new Client(name, email, birthDate, city, phone, history, BloodTypes, password, ConfirmPassword,Capital));
 

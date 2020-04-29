@@ -62,6 +62,7 @@ public class LoginFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this,view);
         apiService = APIClient.getClient().create(ApiService.class);
+        initFragment();
         return view;
     }
 
