@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/login_fragment_iv_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/login_fragment_iv_login_image"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:src="@drawable/image_login"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+    <EditText
+        android:id="@+id/login_fragment_ET_Phone"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/edit_text_background"
+        android:hint="الجوال"
+        android:textColorHint="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/login_fragment_iv_login_image"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        />
+    <EditText
+        android:id="@+id/login_fragment_ET_Password"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/edit_text_background"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:hint="كلمه المرور"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/login_fragment_ET_Phone"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+        />
+    <Button
+        android:id="@+id/login_fragment_btn_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:textColor="#FFF"
+        android:background="#00FFFFFF"
+        android:textSize="@dimen/_12sdp"
+        android:text="هل نسيت كلمة السر ؟"
+        app:layout_constraintTop_toBottomOf="@id/login_fragment_ET_Password"
+        app:layout_constraintStart_toStartOf="@id/guidelineStart"
+
+        />
+
+    <Button
+        android:id="@+id/login_fragment_btn_login"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="دخول"
+        android:background="@drawable/btn_background"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_btn_forget_password" />
+
+    <TextView
+        android:id="@+id/login_fragment_tv_remember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="تذكرنى "
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintTop_toBottomOf="@id/login_fragment_ET_Password" />
+
+    <CheckBox
+        android:id="@+id/login_fragment_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@+id/login_fragment_tv_remember"
+        app:layout_constraintEnd_toStartOf="@+id/login_fragment_tv_remember"
+        app:layout_constraintTop_toTopOf="@+id/login_fragment_tv_remember" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_80sdp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/login_fragment_iv_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorAccent"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="يمكنك التسجيل من هنا "
+            android:background="#00FFFFFF"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginStart="@dimen/_75sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="لا تمتلك حساب ؟"
+            android:textSize="@dimen/_14sdp" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
