@@ -2,7 +2,6 @@ package com.example.bloodbank.network.services;
 
 import com.example.bloodbank.network.models.cities.Cities;
 import com.example.bloodbank.network.models.login.Client;
-import com.example.bloodbank.network.models.login.Login;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
 
 
@@ -32,10 +31,10 @@ public interface ApiService {
     Call<Cities> getBloodType();
 
     @POST(SERVICE_REGISTER)
-    Call<Login> registerClient(@Body Client signUp);
+    Call<Client> registerClient(@Body Client signUp);
 
     @POST(SERVICE_LOGIN)
-    Call<Login> loginClient(@Body Client login);
+    Call<Client> loginClient(@Body Client login);
 
     @POST(SERVICE_RESET_PASSWORD)
     Call<NewPassword> resetPassword(@Body NewPassword resetPassword);

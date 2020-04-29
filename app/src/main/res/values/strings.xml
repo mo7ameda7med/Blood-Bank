@@ -3,4 +3,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="الأسم">الأسم</string>
+    <string name="البريد_الألكترونى">البريد الألكترونى</string>
+    <string name="تاريخ_الميلاد">تاريخ الميلاد</string>
+    <string name="كلمه_المرور">كلمه المرور</string>
+    <string name="تسجيل">تسجيل</string>
+    <string name="تأكيد_كلمه_المرور">تأكيد كلمه المرور</string>
+    <string name="رقم_الهاتف">رقم الهاتف</string>
+    <string name="اخر_تاريخ_للتبرع">اخر تاريخ للتبرع</string>
+    <string name="image">Image</string>
+    <string name="انشاء_حساب_جديد">انشاء حساب جديد</string>
+    <string name="arrow">arrow</string>
+    <string name="الجوال">الجوال</string>
+    <string name="ارسال">ارسال</string>
+    <string name="تغيير">تغيير</string>
+    <string name="كود_التحقيق">كود التحقيق</string>
+    <string name="تأكيد_كلمه_المرور_الجديده">تأكيد كلمه المرور الجديده</string>
+    <string name="كلمه_المرور_الجديده">كلمه المرور الجديده</string>
 </resources>

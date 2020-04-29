@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,8 @@ import com.example.bloodbank.network.api.APIClient;
 import com.example.bloodbank.network.models.login.Client;
 import com.example.bloodbank.network.services.ApiService;
 import com.example.bloodbank.util.HelperMethod;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -71,12 +74,16 @@ public class ConfirmPasswordFragment extends BaseFragment {
     {
         apiService.newPassword(newPassword).enqueue(new Callback<Client>() {
             @Override
-            public void onResponse(Call<Client> call, Response<Client> response) {
-
+            public void onResponse(@NotNull Call<Client> call, @NotNull Response<Client> response) {
+                assert response.body() != null;
+                if(response.body().getStatus()==1)
+                {
+                    Toast.makeText(getActivity(), "reset", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<Client> call, Throwable t) {
+            public void onFailure(@NotNull Call<Client> call, @NotNull Throwable t) {
 
             }
         });

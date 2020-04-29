@@ -28,6 +28,15 @@ public class Client {
     @SerializedName("city_id")
     @Expose
     private String cityId;
+    @SerializedName("status")
+    @Expose
+    private Integer status;
+    @SerializedName("msg")
+    @Expose
+    private String msg;
+    @SerializedName("data")
+    @Expose
+    private LoginData data;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -61,6 +70,22 @@ public class Client {
     @SerializedName("password_confirmation")
     @Expose
     private String passwordConfirmation;
+    @SerializedName("governorate_id")
+    @Expose
+    private String governorateId;
+
+    public Client(String name, String email, String birthDate, String cityId, String phone, String donationLastDate, String bloodTypeId, String password, String passwordConfirmation, String governorateId) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.cityId = cityId;
+        this.phone = phone;
+        this.donationLastDate = donationLastDate;
+        this.bloodTypeId = bloodTypeId;
+        this.password = password;
+        this.passwordConfirmation = passwordConfirmation;
+        this.governorateId = governorateId;
+    }
 
     public Client(String pinCode, String password, String passwordConfirmation) {
         this.pinCode = pinCode;
@@ -68,14 +93,33 @@ public class Client {
         this.passwordConfirmation = passwordConfirmation;
     }
 
-    public Client(String name, String email, String birthDate, String phone, String donationLastDate, String password, String passwordConfirmation) {
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-       this.phone = phone;
-        this.donationLastDate = donationLastDate;
+    public Client(String phone, String password) {
+        this.phone = phone;
         this.password = password;
-        this.passwordConfirmation = passwordConfirmation;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public LoginData getData() {
+        return data;
+    }
+
+    public void setData(LoginData data) {
+        this.data = data;
     }
 
     public String getPasswordConfirmation() {
@@ -100,13 +144,6 @@ public class Client {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Client(String phone,String password) {
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.phone = phone;
     }
 
     public String getCreatedAt() {
