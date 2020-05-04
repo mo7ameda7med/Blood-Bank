@@ -1,11 +1,10 @@
 
-package com.example.bloodbank.network.models.cities;
+package com.example.bloodbank.network.models.login;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Cities {
+public class Auth {
 
     @SerializedName("status")
     @Expose
@@ -15,7 +14,7 @@ public class Cities {
     private String msg;
     @SerializedName("data")
     @Expose
-    private List<CityData> data = null;
+    private LoginData data;
 
     public Integer getStatus() {
         return status;
@@ -33,11 +32,11 @@ public class Cities {
         this.msg = msg;
     }
 
-    public List<CityData> getData() {
+    public LoginData getData() {
         return data;
     }
 
-    public void setData(List<CityData> data) {
+    public void setData(LoginData data) {
         this.data = data;
     }
 

@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 
 import com.example.bloodbank.R;
-import com.example.bloodbank.view.fragment.SplashFragment;
+import com.example.bloodbank.view.fragment.splashFragment.SplashFragment;
 
 import static com.example.bloodbank.util.HelperMethod.replaceFragment;
 

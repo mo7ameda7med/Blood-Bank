@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Blood Bank</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="الأسم">الأسم</string>
     <string name="البريد_الألكترونى">البريد الألكترونى</string>
     <string name="تاريخ_الميلاد">تاريخ الميلاد</string>
@@ -20,4 +17,7 @@
     <string name="كود_التحقيق">كود التحقيق</string>
     <string name="تأكيد_كلمه_المرور_الجديده">تأكيد كلمه المرور الجديده</string>
     <string name="كلمه_المرور_الجديده">كلمه المرور الجديده</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

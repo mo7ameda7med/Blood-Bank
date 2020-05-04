@@ -1,4 +1,4 @@
-package com.example.bloodbank.view.fragment;
+package com.example.bloodbank.view.fragment.splashFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.SliderAdapter;
 import com.example.bloodbank.view.activity.UserCycleActivity;
+import com.example.bloodbank.view.fragment.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;

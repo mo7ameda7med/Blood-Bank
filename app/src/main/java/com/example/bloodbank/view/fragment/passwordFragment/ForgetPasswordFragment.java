@@ -1,4 +1,4 @@
-package com.example.bloodbank.view.fragment;
+package com.example.bloodbank.view.fragment.passwordFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +15,8 @@ import com.example.bloodbank.network.api.APIClient;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
 import com.example.bloodbank.network.services.ApiService;
 import com.example.bloodbank.util.HelperMethod;
+import com.example.bloodbank.view.fragment.BaseFragment;
+import com.example.bloodbank.view.fragment.passwordFragment.ConfirmPasswordFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,26 +58,24 @@ public class ForgetPasswordFragment extends BaseFragment {
         loginFragmentBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phone =forgetPasswordFragmentETPhone.getText().toString();
-                Send(new NewPassword(phone));
+                Send();
                 HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),R.id.user_cycle_activity,new ConfirmPasswordFragment());
             }
         });
     }
 
-
-
-
-
-    private void Send(NewPassword resetPassword)
+    private void Send()
     {
 
-        apiService.resetPassword(resetPassword).enqueue(new Callback<NewPassword>() {
+        String phone =forgetPasswordFragmentETPhone.getText().toString();
+
+        apiService.resetPassword(phone).enqueue(new Callback<NewPassword>() {
             @Override
             public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
                 assert response.body() != null;
                 if(response.body().getStatus()==1)
                 {
+                    Toast.makeText(getActivity(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
                 }
             }
 

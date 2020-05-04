@@ -1,5 +1,6 @@
-package com.example.bloodbank.view.fragment;
+package com.example.bloodbank.view.fragment.loginFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +9,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.bloodbank.R;
 import com.example.bloodbank.network.api.APIClient;
-import com.example.bloodbank.network.models.login.Client;
+import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.services.ApiService;
 import com.example.bloodbank.util.HelperMethod;
+import com.example.bloodbank.view.activity.MainActivity;
+import com.example.bloodbank.view.fragment.BaseFragment;
+import com.example.bloodbank.view.fragment.registerFragment.RegisterFragment;
+import com.example.bloodbank.view.fragment.passwordFragment.ForgetPasswordFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,7 +64,7 @@ public class LoginFragment extends BaseFragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
         apiService = APIClient.getClient().create(ApiService.class);
         initFragment();
         return view;
@@ -71,38 +75,35 @@ public class LoginFragment extends BaseFragment {
         super.onBack();
     }
 
-    private void Login(Client login) {
-        apiService.loginClient(login).enqueue(new Callback<Client>() {
+    private void Login() {
+        String password = loginFragmentETPassword.getText().toString();
+        String phone = loginFragmentETPhone.getText().toString();
+        apiService.login(phone, password).enqueue(new Callback<Auth>() {
             @Override
-            public void onResponse(@NotNull Call<Client> call, @NotNull Response<Client> response) {
-                assert response.body() != null;
-                if (response.body().getStatus() == 1) {
-                    Toast.makeText(getActivity(), "loginClient", Toast.LENGTH_SHORT).show();
-                }
+            public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
+
             }
 
             @Override
-            public void onFailure(@NotNull Call<Client> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<Auth> call, @NotNull Throwable t) {
 
             }
         });
     }
 
-
     @OnClick({R.id.login_fragment_btn_forget_password, R.id.login_fragment_btn_login, R.id.login_fragment_btn_register})
-    public void onViewClicked(View view) {
+    void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_fragment_btn_forget_password:
-                HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),R.id.user_cycle_activity,new ForgetPasswordFragment());
+                HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), R.id.user_cycle_activity, new ForgetPasswordFragment());
 
                 break;
             case R.id.login_fragment_btn_login:
-                String password=loginFragmentETPassword.getText().toString();
-                String phone=loginFragmentETPhone.getText().toString();
-                Login(new Client(phone,password));
+                Login();
+                startActivity(new Intent(getActivity(),MainActivity.class));
                 break;
             case R.id.login_fragment_btn_register:
-                HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),R.id.user_cycle_activity,new RegisterFragment());
+                HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), R.id.user_cycle_activity, new RegisterFragment());
                 break;
         }
     }

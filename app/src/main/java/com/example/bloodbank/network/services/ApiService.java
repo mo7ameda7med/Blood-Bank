@@ -1,12 +1,13 @@
 package com.example.bloodbank.network.services;
 
-import com.example.bloodbank.network.models.cities.Cities;
-import com.example.bloodbank.network.models.login.Client;
+import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
+import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
 
 
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -22,24 +23,40 @@ import static com.example.bloodbank.network.api.APIConstants.SERVICE_RESET_PASSW
 public interface ApiService {
 
     @GET(SERVICE_GOVERNORATES)
-    Call<Cities> getGovernorates();
+    Call<GeneralResponse> getGovernorates();
 
     @GET(SERVICE_CITIES)
-    Call<Cities> getCities(@Query("governorate_id") int governorateId );
+    Call<GeneralResponse> getCities(@Query("governorate_id") int governorateId);
 
     @GET(SERVICE_BLOOD_TYPES)
-    Call<Cities> getBloodType();
+    Call<GeneralResponse> getBloodType();
 
     @POST(SERVICE_REGISTER)
-    Call<Client> registerClient(@Body Client signUp);
+    @FormUrlEncoded
+    Call<Auth> register(@Field("name") String name,
+                        @Field("email") String email,
+                        @Field("birth_date") String birthDate,
+                        @Field("city_id") String city_id,
+                        @Field("phone") String phone,
+                        @Field("donation_last_date") String donationLastDate,
+                        @Field("password") String pass,
+                        @Field("password_confirmation") String newPassword,
+                        @Field("blood_type_id") String blood_type_id);
 
     @POST(SERVICE_LOGIN)
-    Call<Client> loginClient(@Body Client login);
+    @FormUrlEncoded
+    Call<Auth> login(@Field("phone") String phone,
+                     @Field("password") String pass);
 
     @POST(SERVICE_RESET_PASSWORD)
-    Call<NewPassword> resetPassword(@Body NewPassword resetPassword);
+    @FormUrlEncoded
+    Call<NewPassword> resetPassword(@Field("phone") String phone);
 
     @POST(SERVICE_NEW_PASSWORD)
-    Call<Client> newPassword(@Body Client newPassword);
+    @FormUrlEncoded
+    Call<NewPassword> newPassword(@Field("pin_code") String pin_code,
+                                  @Field("password") String password,
+                                  @Field("password_confirmation") String newPassword);
+
 
 }

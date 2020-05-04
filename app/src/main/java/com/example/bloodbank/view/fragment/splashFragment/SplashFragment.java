@@ -1,7 +1,6 @@
-package com.example.bloodbank.view.fragment;
+package com.example.bloodbank.view.fragment.splashFragment;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -11,7 +10,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import com.example.bloodbank.R;
 import com.example.bloodbank.util.HelperMethod;
-import com.jaeger.library.StatusBarUtil;
+import com.example.bloodbank.view.fragment.BaseFragment;
+import com.example.bloodbank.view.fragment.splashFragment.SliderFragment;
 
 import java.util.Objects;
 

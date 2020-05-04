@@ -1,7 +1,7 @@
 
 package com.example.bloodbank.network.models.login;
 
-import com.example.bloodbank.network.models.cities.CityData;
+import com.example.bloodbank.network.models.generalResponse.GeneralResponseData;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -28,15 +28,6 @@ public class Client {
     @SerializedName("city_id")
     @Expose
     private String cityId;
-    @SerializedName("status")
-    @Expose
-    private Integer status;
-    @SerializedName("msg")
-    @Expose
-    private String msg;
-    @SerializedName("data")
-    @Expose
-    private LoginData data;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -60,67 +51,18 @@ public class Client {
     private Boolean canDonate;
     @SerializedName("city")
     @Expose
-    private CityData city;
+    private GeneralResponseData city;
     @SerializedName("blood_type")
     @Expose
-    private CityData bloodType;
+    private GeneralResponseData bloodType;
     @SerializedName("password")
     @Expose
     private String password;
     @SerializedName("password_confirmation")
     @Expose
     private String passwordConfirmation;
-    @SerializedName("governorate_id")
-    @Expose
-    private String governorateId;
 
-    public Client(String name, String email, String birthDate, String cityId, String phone, String donationLastDate, String bloodTypeId, String password, String passwordConfirmation, String governorateId) {
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.cityId = cityId;
-        this.phone = phone;
-        this.donationLastDate = donationLastDate;
-        this.bloodTypeId = bloodTypeId;
-        this.password = password;
-        this.passwordConfirmation = passwordConfirmation;
-        this.governorateId = governorateId;
-    }
 
-    public Client(String pinCode, String password, String passwordConfirmation) {
-        this.pinCode = pinCode;
-        this.password = password;
-        this.passwordConfirmation = passwordConfirmation;
-    }
-
-    public Client(String phone, String password) {
-        this.phone = phone;
-        this.password = password;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public LoginData getData() {
-        return data;
-    }
-
-    public void setData(LoginData data) {
-        this.data = data;
-    }
 
     public String getPasswordConfirmation() {
         return passwordConfirmation;
@@ -250,19 +192,19 @@ public class Client {
         this.canDonate = canDonate;
     }
 
-    public CityData getCity() {
+    public GeneralResponseData getCity() {
         return city;
     }
 
-    public void setCity(CityData city) {
+    public void setCity(GeneralResponseData city) {
         this.city = city;
     }
 
-    public CityData getBloodType() {
+    public GeneralResponseData getBloodType() {
         return bloodType;
     }
 
-    public void setBloodType(CityData bloodType) {
+    public void setBloodType(GeneralResponseData bloodType) {
         this.bloodType = bloodType;
     }
 

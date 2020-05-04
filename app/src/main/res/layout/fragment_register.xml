@@ -27,13 +27,13 @@
             android:id="@+id/register_fragment_iv_login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/image"
             android:scaleType="centerCrop"
             android:src="@drawable/login"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/image" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/register_fragment_LL"
@@ -63,13 +63,13 @@
             android:background="@drawable/edit_text_background"
             android:drawableEnd="@drawable/ic_person_outline_black_24dp"
             android:hint="@string/الأسم"
+            android:importantForAutofill="no"
             android:inputType="text"
             android:textColorHint="#9A0B0B"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/register_fragment_LL"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@id/register_fragment_LL" />
 
         <EditText
             android:id="@+id/register_fragment_ET_email"
@@ -79,13 +79,13 @@
             android:background="@drawable/edit_text_background"
             android:drawableEnd="@drawable/ic_mail_black_24dp"
             android:hint="@string/البريد_الألكترونى"
+            android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:textColorHint="#9A0B0B"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@id/register_fragment_ET_name"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@id/register_fragment_ET_name" />
 
         <TextView
             android:id="@+id/register_fragment_ET_birth_date"
@@ -115,29 +115,31 @@
             app:layout_constraintTop_toBottomOf="@id/register_fragment_ET_birth_date">
 
             <ImageView
-                android:layout_width="@dimen/_35sdp"
-                android:layout_weight="0"
+                android:layout_width="@dimen/_20sdp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/ic_arrow_downward_black_24dp"
-                android:contentDescription="@string/arrow" />
+                android:layout_weight="0"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/ic_arrow_downward_black_24dp" />
 
             <Spinner
-                android:layout_weight="1"
                 android:id="@+id/register_fragment_ET_blood_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:textSize="@dimen/_16sdp" />
+
             <ImageView
-                android:layout_width="@dimen/_35sdp"
-                android:layout_weight="0"
+                android:layout_width="@dimen/_20sdp"
                 android:layout_height="match_parent"
+                android:layout_gravity="end"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/ic_arrow_downward_black_24dp"
-                android:contentDescription="@string/arrow" />
+                android:layout_weight="0"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/ic_home_black_24dp" />
         </LinearLayout>
 
         <TextView
@@ -172,17 +174,29 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/ic_arrow_downward_black_24dp"
-                android:contentDescription="@string/arrow" />
+                android:contentDescription="@string/arrow"
+                android:layout_weight="0"
+                android:src="@drawable/ic_arrow_downward_black_24dp" />
 
             <Spinner
                 android:id="@+id/register_fragment_ET_city"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:textSize="@dimen/_16sdp" />
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_weight="0"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/ic_home_black_24dp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/layout3"
             android:layout_width="0dp"
@@ -199,15 +213,26 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:src="@drawable/ic_arrow_downward_black_24dp"
-                android:contentDescription="@string/arrow" />
+                android:contentDescription="@string/arrow"
+                android:layout_weight="0"
+                android:src="@drawable/ic_arrow_downward_black_24dp" />
 
             <Spinner
                 android:id="@+id/register_fragment_ET_capital"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:textSize="@dimen/_16sdp" />
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_weight="0"
+                android:contentDescription="@string/arrow"
+                android:src="@drawable/ic_home_black_24dp" />
 
         </LinearLayout>
 
@@ -220,14 +245,14 @@
             android:drawableEnd="@drawable/ic_phone_black_24dp"
             android:gravity="center|right"
             android:hint="@string/رقم_الهاتف"
+            android:importantForAutofill="no"
             android:inputType="phone"
             android:textColorHint="#9A0B0B"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/layout3"
-            tools:ignore="RtlHardcoded"
-            android:importantForAutofill="no" />
+            tools:ignore="RtlHardcoded" />
 
         <EditText
             android:id="@+id/register_fragment_ET_Password"
@@ -238,13 +263,13 @@
             android:drawableEnd="@drawable/ic_password_24dp"
             android:gravity="center|right"
             android:hint="@string/كلمه_المرور"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textColorHint="#9A0B0B"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/register_fragment_ET_Phone"
-            android:importantForAutofill="no"
             tools:ignore="RtlHardcoded" />
 
         <EditText
@@ -256,17 +281,17 @@
             android:drawableEnd="@drawable/ic_password_24dp"
             android:gravity="center|right"
             android:hint="@string/تأكيد_كلمه_المرور"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textColorHint="#9A0B0B"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@id/register_fragment_ET_Password"
-            android:importantForAutofill="no"
             tools:ignore="RtlHardcoded" />
 
         <Button
-            android:id="@+id/register_fragment_btn_login"
+            android:id="@+id/register_fragment_btn_register"
             android:layout_width="@dimen/_110sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_20sdp"
