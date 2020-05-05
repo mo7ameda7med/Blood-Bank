@@ -46,8 +46,8 @@ public class HomeFragment extends BaseFragment {
 
     private void setupSlider(View view) {
         viewPagerWithFragmentAdapter = new ViewPagerWithFragmentAdapter(getFragmentManager());
-        viewPagerWithFragmentAdapter.addPager(new DonationFragment(), "المقالات");
-        viewPagerWithFragmentAdapter.addPager(new PostFragment(), "طلبات التبرع");
+        viewPagerWithFragmentAdapter.addPager(new DonationFragment(), "طلبات التبرع");
+        viewPagerWithFragmentAdapter.addPager(new PostFragment(), "المقالات");
         fragmentHomeVpSlider.setAdapter(viewPagerWithFragmentAdapter);
         fragmentHomeTLSliderTabs.setupWithViewPager(fragmentHomeVpSlider);
 

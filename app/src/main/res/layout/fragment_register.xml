@@ -297,7 +297,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/btn_background"
             android:text="@string/تسجيل"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"

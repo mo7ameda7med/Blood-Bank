@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         app:itemIconTint="@color/colorPrimary"
         android:background="@color/colorAccent"
+        app:itemIconSize="@dimen/_20sdp"
+        app:itemBackground="@drawable/tab_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

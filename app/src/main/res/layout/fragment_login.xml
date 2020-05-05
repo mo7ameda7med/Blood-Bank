@@ -43,7 +43,7 @@
         android:layout_height="@dimen/_40sdp"
         android:background="@drawable/edit_text_background"
         android:hint="الجوال"
-        android:textColorHint="@color/colorPrimary"
+        android:textColorHint="@color/colorAccent"
         android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintTop_toBottomOf="@id/login_fragment_iv_login_image"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
@@ -56,7 +56,7 @@
         android:background="@drawable/edit_text_background"
         android:layout_marginTop="@dimen/_12sdp"
         android:hint="كلمه المرور"
-        android:textColorHint="@color/colorPrimary"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintTop_toBottomOf="@id/login_fragment_ET_Phone"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@id/guidelineStart"
@@ -82,7 +82,7 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:text="دخول"
         android:background="@drawable/btn_background"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
@@ -104,6 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
+        android:buttonTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/login_fragment_tv_remember"
         app:layout_constraintEnd_toStartOf="@+id/login_fragment_tv_remember"
         app:layout_constraintTop_toTopOf="@+id/login_fragment_tv_remember" />
@@ -116,7 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         >
 
         <Button
@@ -125,9 +126,8 @@
             android:layout_height="wrap_content"
             android:text="يمكنك التسجيل من هنا "
             android:background="#00FFFFFF"
-            android:textStyle="bold"
             android:textSize="@dimen/_14sdp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:layout_marginStart="@dimen/_75sdp"
             android:layout_marginEnd="@dimen/_2sdp"
             />
@@ -135,7 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:text="لا تمتلك حساب ؟"
             android:textSize="@dimen/_14sdp" />
 
