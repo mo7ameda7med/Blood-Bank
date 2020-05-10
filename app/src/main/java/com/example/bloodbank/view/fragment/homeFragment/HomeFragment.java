@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.ViewPagerWithFragmentAdapter;
 import com.example.bloodbank.view.fragment.BaseFragment;
+import com.example.bloodbank.view.fragment.homeFragment.postsFragment.PostFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import butterknife.BindView;

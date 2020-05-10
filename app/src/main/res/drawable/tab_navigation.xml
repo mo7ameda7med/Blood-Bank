@@ -7,7 +7,7 @@
                     <size android:height="3dp"/>
                     <solid android:color="#C2C2C2"/>
                 </shape>
-            </item>
-        </layer-list>
     </item>
-</selector>
+    </layer-list>
+    </item>
+    </selector>

@@ -1,6 +1,5 @@
 package com.example.bloodbank.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,23 +13,21 @@ import com.example.bloodbank.network.models.generalResponse.GeneralResponseData;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SpinnerAdapter extends BaseAdapter {
 
     private Context context;
-    private LayoutInflater layoutInflater;
-    public List<GeneralResponseData> generalResponseDataList = new ArrayList<>();
-    public int selectItem = 0;
+    private List<GeneralResponseData> generalResponseDataList = new ArrayList<>();
+    private LayoutInflater inflater;
+    public int selectedId;
 
     public SpinnerAdapter(Context applicationContext) {
         this.context = applicationContext;
-        layoutInflater = (LayoutInflater.from(applicationContext));
+        inflater = (LayoutInflater.from(applicationContext));
     }
 
     public void setData(List<GeneralResponseData> generalResponseDataList, String hint) {
-        this.generalResponseDataList = new ArrayList<>();
-        this.generalResponseDataList.add(new GeneralResponseData(0, hint));
-        this.generalResponseDataList.addAll(generalResponseDataList);
+        this.generalResponseDataList = generalResponseDataList;
+        generalResponseDataList.add( new GeneralResponseData(0,hint));
     }
 
     @Override
@@ -39,25 +36,24 @@ public class SpinnerAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int i) {
         return null;
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int i) {
         return 0;
     }
 
-
-    @SuppressLint({"ViewHolder", "InflateParams"})
     @Override
-    public View getView(int position, View ConvertView, ViewGroup parent) {
-        View view = layoutInflater.inflate(R.layout.items_custom_spinner, null);
-        TextView names = view.findViewById(R.id.item_custom_spinner_Tv);
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        view = inflater.inflate(R.layout.items_custom_spinner, null);
 
-        names.setText(generalResponseDataList.get(position).getName());
-        selectItem = generalResponseDataList.get(position).getId();
+        TextView names = (TextView) view.findViewById(R.id.item_custom_spinner_Tv);
+
+        names.setText(generalResponseDataList.get(i).getName());
+        selectedId = generalResponseDataList.get(i).getId();
+
         return view;
     }
 }
-

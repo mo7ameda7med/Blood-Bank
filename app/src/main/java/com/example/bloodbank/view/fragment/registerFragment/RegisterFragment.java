@@ -1,5 +1,7 @@
 package com.example.bloodbank.view.fragment.registerFragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +17,10 @@ import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.SpinnerAdapter;
 import com.example.bloodbank.network.api.APIClient;
 import com.example.bloodbank.network.models.DateTxt;
-import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 import com.example.bloodbank.network.models.login.Auth;
+import com.example.bloodbank.network.models.login.Client;
 import com.example.bloodbank.network.services.ApiService;
+import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.HelperMethod;
 import com.example.bloodbank.view.fragment.BaseFragment;
 import com.example.bloodbank.view.fragment.loginFragment.LoginFragment;
@@ -49,7 +52,7 @@ public class RegisterFragment extends BaseFragment {
     private Spinner registerFragmentETCity;
     private Spinner registerFragmentETCapital;
     private ApiService apiService;
-    private SpinnerAdapter spinnerAdapterGovernorates;
+    private SpinnerAdapter GovernoratesAdapter, CitiesAdapter, bloodTypesAdapter;
 
 
     public RegisterFragment() {
@@ -64,6 +67,17 @@ public class RegisterFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         initFragment();
         initView(view);
+
+        bloodTypesAdapter = new SpinnerAdapter(getActivity());
+//        General.getSpinnerData(getActivity(), registerFragmentETBloodTypes, bloodTypesAdapter, getString(R.string.Wait), );
+
+        GovernoratesAdapter = new SpinnerAdapter(getActivity());
+//        CitiesAdapter = new SpinnerAdapter(getActivity());
+//        General.getSpinnerData(getActivity(), registerFragmentETCity, GovernoratesAdapter,
+//                getString(R.string.Wait), , registerFragmentETCapital
+//                , CitiesAdapter, getString(R.string.Wait));
+
+
 //        getBloodTypes();
 //        getGovernorates();
 //        getCities();
@@ -114,133 +128,11 @@ public class RegisterFragment extends BaseFragment {
 
     }
 
+    private void setData(Client data) {
 
-//        apiService.getGovernorates().enqueue(new Callback<GeneralResponse>() {
-//            @Override
-//            public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-//                assert response.body() != null;
-//                if (response.body().getStatus() == 1) {
-//                    List<String> listSpinner = new ArrayList<>();
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        listSpinner.add(response.body().getData().get(i).getName());
-//                    }
-//                    ArrayAdapter<String> adapterGovernorate = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-//                            android.R.layout.simple_spinner_item, listSpinner);
-//                    adapterGovernorate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    registerFragmentETCity.setAdapter(adapterGovernorate);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
-//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        apiService.getGovernorates().enqueue(new Callback<GeneralResponse>() {
-//            @Override
-//            public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-//                assert response.body() != null;
-//                if(response.body().getStatus()==1) {
-//                    sliderAdapterGovernorates = new SliderAdapter(Objects.requireNonNull(getActivity()));
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
-//
-//            }
-//        });
+    }
 
-
-   private void getSpinnerData(Call<GeneralResponse> call, Spinner spinner, SpinnerAdapter adapter,Integer selectItem,String hint)
-   {
-       call.enqueue(new Callback<GeneralResponse>() {
-           @Override
-           public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-               try {
-                   assert response.body() != null;
-                   spinnerAdapterGovernorates=new SpinnerAdapter(getActivity());
-                   adapter.setData(response.body().getData(),hint);
-                   spinner.setAdapter(adapter);
-                   for (int i = 0; i <adapter.generalResponseDataList.size() ; i++) {
-                       if (adapter.generalResponseDataList.get(i).getId()==selectItem) {
-                           spinner.setSelection(i);
-                           break;
-                       }
-                   }
-
-               }catch (Exception e)
-               {
-
-               }
-           }
-
-           @Override
-           public void onFailure(Call<GeneralResponse> call, Throwable t) {
-
-           }
-       });
-   }
-
-//    private void getCities() {
-//
-//        governoratesId = (int) registerFragmentETCity.getSelectedItemId() + 1;
-//        registerFragmentETCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                apiService.getCities(position + 1).enqueue(new Callback<GeneralResponse>() {
-//                    @Override
-//                    public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-//                        List<String> listCitySpinner = new ArrayList<>();
-////                        assert response.body() != null;
-////                        for (int i = 0; i < response.body().getData().size(); i++) {
-////                            listCitySpinner.add(response.body().getData().get(i).getName());
-////                        }
-//                        ArrayAdapter<String> adapterCity = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-//                                android.R.layout.simple_spinner_item, listCitySpinner);
-//                        adapterCity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                        registerFragmentETCapital.setAdapter(adapterCity);
-//                    }
-//
-//                    @Override
-//                    public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
-//                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//    }
-//
-//    private void getBloodTypes() {
-//        apiService.getBloodType().enqueue(new Callback<GeneralResponse>() {
-//            @Override
-//            public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-//                assert response.body() != null;
-//                if (response.body().getStatus() == 1) {
-//                    List<String> listBloodType = new ArrayList<>();
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        listBloodType.add(response.body().getData().get(i).getName());
-//                    }
-//                    ArrayAdapter<String> adapterBloodType = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-//                            android.R.layout.simple_spinner_item, listBloodType);
-//                    adapterBloodType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                    registerFragmentETBloodTypes.setAdapter(adapterBloodType);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
-//                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
+    //
     private void registerClient() {
         String name = registerFragmentETName.getText().toString();
         String email = registerFragmentETEmail.getText().toString();
@@ -252,15 +144,13 @@ public class RegisterFragment extends BaseFragment {
         String city = registerFragmentETCity.getSelectedItem().toString();
         String BloodTypes = registerFragmentETBloodTypes.getSelectedItem().toString();
 
-        apiService.register(name,email,birthDate,city,phone,history,password,confirmPassword,BloodTypes).enqueue(new Callback<Auth>() {
+        apiService.register(name, email, birthDate, city, phone, history, password, confirmPassword, BloodTypes).enqueue(new Callback<Auth>() {
             @Override
             public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
 
                 assert response.body() != null;
-                if(response.body().getStatus()==1)
-                {
-                    getSpinnerData((Call<GeneralResponse>) response.body().getData().getClient().getCity().getGovernorate(),registerFragmentETCity,spinnerAdapterGovernorates,
-                            response.body().getData().getClient().getCity().getId(),"اختر المحافظه");
+                if (response.body().getStatus() == 1) {
+
                 }
             }
 

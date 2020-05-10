@@ -21,6 +21,7 @@
             app:tabTextColor="@color/colorPrimary"
             android:layout_marginEnd="@dimen/_16sdp"
             app:tabIndicatorHeight="3dp"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
             android:layout_height="60dp" />
     </androidx.appcompat.widget.Toolbar>
 

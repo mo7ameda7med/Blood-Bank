@@ -3,6 +3,8 @@ package com.example.bloodbank.network.services;
 import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
+import com.example.bloodbank.network.models.posts.Posts;
+import com.example.bloodbank.view.fragment.homeFragment.postsFragment.PostsHolder;
 
 
 import retrofit2.Call;
@@ -17,6 +19,7 @@ import static com.example.bloodbank.network.api.APIConstants.SERVICE_CITIES;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_GOVERNORATES;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_LOGIN;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_NEW_PASSWORD;
+import static com.example.bloodbank.network.api.APIConstants.SERVICE_POSTS;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_REGISTER;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_RESET_PASSWORD;
 
@@ -57,6 +60,10 @@ public interface ApiService {
     Call<NewPassword> newPassword(@Field("pin_code") String pin_code,
                                   @Field("password") String password,
                                   @Field("password_confirmation") String newPassword);
+
+    @GET(SERVICE_POSTS)
+    Call<Posts> getPost(@Query("api_token") String apiToken,
+                        @Query("page") int page);
 
 
 }

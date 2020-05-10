@@ -10,6 +10,7 @@ public class APIConstants {
     public static final String SERVICE_LOGIN=BASE_URL+"login";
     public static final String SERVICE_RESET_PASSWORD=BASE_URL+"reset-password";
     public static final String SERVICE_NEW_PASSWORD=BASE_URL+"new-password";
+    public static final String SERVICE_POSTS=BASE_URL+"posts";
 
 
 
