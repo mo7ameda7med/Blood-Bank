@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbank.R;
 import com.example.bloodbank.network.models.posts.Posts;
+import com.example.bloodbank.network.models.posts.PostsData;
 import com.example.bloodbank.util.HelperMethod;
 
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private Context context;
     private Activity activity;
-    private List<Posts> posts = new ArrayList<>();
+    private List<PostsData> posts = new ArrayList<>();
 
 //    private List<RestaurantClientData> restaurantDataList = new ArrayList<>();
 
-    public PostAdapter(Context context, Activity activity, List<Posts> posts) {
+    public PostAdapter(Context context, Activity activity, List<PostsData> posts) {
         this.context = context;
         this.activity = activity;
         this.posts = posts;
@@ -56,18 +57,21 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     private void setData(ViewHolder holder, int position) {
-        HelperMethod.onLoadImageFromUrl(holder.itemPostIVPostImage, posts.get(position).getData().getData().get(position).getThumbnailFullPath(), context);
-        holder.itemPostBtnPosts.setText(posts.get(position).getData().getData().get(position).getTitle());
+        holder.position= position;
+        HelperMethod.onLoadImageFromUrl(holder.itemPostIVPostImage, posts.get(position).getThumbnailFullPath(), context);
+        holder.itemPostBtnPosts.setText(posts.get(position).getTitle());
+        if (posts.get(position).getIsFavourite()) {
+            holder.itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
+        } else {
+            holder.itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_border_24dp);
+        }
 
     }
 
     private void setAction(ViewHolder holder, int position) {
 
     }
-    public void filterList(ArrayList<Posts> postsArrayList) {
-        posts = postsArrayList;
-        notifyDataSetChanged();
-    }
+
 
     @Override
     public int getItemCount() {
@@ -75,6 +79,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public int position;
         private View view;
         @BindView(R.id.item_post_IV_post_image)
         ImageView itemPostIVPostImage;
@@ -92,14 +97,13 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.item_post_IB_favorite:
-
-                    boolean isFavourite = true;
-
-                    if (isFavourite) {
+                    posts.get(position).setIsFavourite(!posts.get(position).getIsFavourite());
+                    if (posts.get(position).getIsFavourite()) {
                         itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
                     } else {
                         itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_border_24dp);
                     }
+
 
                     break;
             }

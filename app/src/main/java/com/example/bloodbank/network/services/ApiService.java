@@ -21,6 +21,7 @@ import static com.example.bloodbank.network.api.APIConstants.SERVICE_NEW_PASSWOR
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_POSTS;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_REGISTER;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_RESET_PASSWORD;
+import static com.example.bloodbank.network.api.APIConstants.SERVICE_post_toggle_favourite;
 
 public interface ApiService {
 
@@ -64,6 +65,9 @@ public interface ApiService {
     @GET(SERVICE_POSTS)
     Call<Posts> getPost(@Query("api_token") String apiToken,
                         @Query("page") int page);
+
+//    @POST(SERVICE_post_toggle_favourite)
+//    Call<>
 
 
 }

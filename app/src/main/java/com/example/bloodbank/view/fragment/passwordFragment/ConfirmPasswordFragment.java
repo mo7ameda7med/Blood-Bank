@@ -62,28 +62,28 @@ public class ConfirmPasswordFragment extends BaseFragment {
     }
 
 
-    private void newPassword() {
-        HelperMethod.showProgressDialog(getActivity(), "wait");
-        String code = confirmPasswordFragmentETCode.getText().toString();
-        String password = confirmPasswordFragmentETPassword.getText().toString();
-        String ConfirmPassword = confirmPasswordFragmentETConfirmPassword.getText().toString();
-
-        getClient().newPassword(code, password, ConfirmPassword,).enqueue(new Callback<NewPassword>() {
-            @Override
-            public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
-                HelperMethod.dismissProgressDialog();
-                assert response.body() != null;
-                if (response.body().getStatus() == 1) {
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<NewPassword> call, @NotNull Throwable t) {
-
-            }
-        });
-
-    }
+//    private void newPassword() {
+//        HelperMethod.showProgressDialog(getActivity(), "wait");
+//        String code = confirmPasswordFragmentETCode.getText().toString();
+//        String password = confirmPasswordFragmentETPassword.getText().toString();
+//        String ConfirmPassword = confirmPasswordFragmentETConfirmPassword.getText().toString();
+//
+//        getClient().newPassword(code, password, ConfirmPassword,).enqueue(new Callback<NewPassword>() {
+//            @Override
+//            public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
+//                HelperMethod.dismissProgressDialog();
+//                assert response.body() != null;
+//                if (response.body().getStatus() == 1) {
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(@NotNull Call<NewPassword> call, @NotNull Throwable t) {
+//
+//            }
+//        });
+//
+//    }
 
     @Override
     public void onBack() {
@@ -93,7 +93,7 @@ public class ConfirmPasswordFragment extends BaseFragment {
 
     @OnClick(R.id.confirm_password_fragment_btn)
     public void onViewClicked() {
-        newPassword();
+//        newPassword();
         HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), R.id.user_cycle_activity, new LoginFragment());
     }
 }
