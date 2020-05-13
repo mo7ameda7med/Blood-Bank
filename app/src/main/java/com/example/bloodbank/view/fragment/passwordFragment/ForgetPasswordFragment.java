@@ -26,6 +26,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bloodbank.network.api.APIClient.getClient;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -46,7 +48,6 @@ public class ForgetPasswordFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_forget_passwod, container, false);
-        apiService= APIClient.getClient().create(ApiService.class);
         initView(view);
         return view;
     }
@@ -69,13 +70,13 @@ public class ForgetPasswordFragment extends BaseFragment {
 
         String phone =forgetPasswordFragmentETPhone.getText().toString();
 
-        apiService.resetPassword(phone).enqueue(new Callback<NewPassword>() {
+        getClient().resetPassword(phone).enqueue(new Callback<NewPassword>() {
             @Override
             public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
                 assert response.body() != null;
                 if(response.body().getStatus()==1)
                 {
-                    Toast.makeText(getActivity(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
+
                 }
             }
 

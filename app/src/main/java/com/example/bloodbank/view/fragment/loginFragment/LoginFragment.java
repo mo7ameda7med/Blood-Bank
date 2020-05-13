@@ -33,6 +33,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bloodbank.network.api.APIClient.getClient;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -65,7 +67,6 @@ public class LoginFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        apiService = APIClient.getClient().create(ApiService.class);
         initFragment();
         return view;
     }
@@ -78,7 +79,7 @@ public class LoginFragment extends BaseFragment {
     private void Login() {
         String password = loginFragmentETPassword.getText().toString();
         String phone = loginFragmentETPhone.getText().toString();
-        apiService.login(phone, password).enqueue(new Callback<Auth>() {
+        getClient().login(phone, password).enqueue(new Callback<Auth>() {
             @Override
             public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
 

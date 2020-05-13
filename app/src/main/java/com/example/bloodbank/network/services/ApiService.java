@@ -4,7 +4,6 @@ import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
 import com.example.bloodbank.network.models.posts.Posts;
-import com.example.bloodbank.view.fragment.homeFragment.postsFragment.PostsHolder;
 
 
 import retrofit2.Call;
@@ -57,7 +56,8 @@ public interface ApiService {
 
     @POST(SERVICE_NEW_PASSWORD)
     @FormUrlEncoded
-    Call<NewPassword> newPassword(@Field("pin_code") String pin_code,
+    Call<NewPassword> newPassword(@Field("phone") String phone,
+                                  @Field("pin_code") String pin_code,
                                   @Field("password") String password,
                                   @Field("password_confirmation") String newPassword);
 

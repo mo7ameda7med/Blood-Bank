@@ -17,6 +17,41 @@ public class PasswordData {
     @Expose
     private String email;
 
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
+    }
+
+    @SerializedName("pin_code")
+    @Expose
+    private String pinCode;
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("password_confirmation")
+    @Expose
+    private String passwordConfirmation;
+
+
     public Integer getPinCodeForTest() {
         return pinCodeForTest;
     }

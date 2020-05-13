@@ -19,6 +19,13 @@ public class NewPassword {
     @Expose
     private String phone;
 
+    @SerializedName("password")
+    @Expose
+    private String password;
+    @SerializedName("password_confirmation")
+    @Expose
+    private String passwordConfirmation;
+
     public String getPhone() {
         return phone;
     }

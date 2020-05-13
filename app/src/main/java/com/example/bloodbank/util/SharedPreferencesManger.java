@@ -95,5 +95,20 @@ public class SharedPreferencesManger {
 
         return sharedPreferences.getString(LANG, "en");
     }
+    public static void saveState(Activity activity ,boolean isFavourite) {
+        setSharedPreferences(activity);
+        if (sharedPreferences == null) {
+            sharedPreferences = activity.getSharedPreferences(
+                    "Favourite", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+            editor.putBoolean("State", isFavourite);
+            editor.commit();
+        }
+    }
 
+    public static boolean readState() {
+            return sharedPreferences.getBoolean(LANG, true);
+    }
 }

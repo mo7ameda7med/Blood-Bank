@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.SpinnerAdapter;
 import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 
@@ -22,16 +21,13 @@ public class General {
             @Override
             public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
                 try {
-                    HelperMethod.showProgressDialog(activity, activity.getString(R.string.Wait));
                     assert response.body() != null;
-                    if(response.body().getStatus()==1)
-                    {
-                        adapter.setData(response.body().getData(),hint);
+                    if (response.body().getStatus() == 1) {
+                        adapter.setData(response.body().getData(), hint);
                         spinner.setAdapter(adapter);
+
                     }
-                }catch (Exception e)
-                {
-                    HelperMethod.dismissProgressDialog();
+                } catch (Exception e) {
                 }
 
             }
@@ -42,43 +38,70 @@ public class General {
             }
         });
     }
+
     public static void getSpinnerData(Activity activity, Spinner spinner, SpinnerAdapter adapter, String hint,
-                                      Call<GeneralResponse> method,Spinner spinner2, SpinnerAdapter adapter2, String hint2,
+                                      Call<GeneralResponse> method, Spinner spinner2, SpinnerAdapter adapter2, String hint2,
                                       Call<GeneralResponse> method2) {
         method.enqueue(new Callback<GeneralResponse>() {
             @Override
-            public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
-                try {
-                    HelperMethod.showProgressDialog(activity, activity.getString(R.string.Wait));
-                    assert response.body() != null;
-                    if(response.body().getStatus()==1)
-                    {
-                        adapter.setData(response.body().getData(),hint);
-                        spinner.setAdapter(adapter);
-                        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                if(position != 0)
-                                {
-                                    getSpinnerData(activity,spinner2,adapter2,hint2,method2);
-                                }
-                            }
-                        });
-                    }
-                }catch (Exception e)
-                {
-                    HelperMethod.dismissProgressDialog();
-                }
+            public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+               try {
+                   if (response.body().getStatus() == 1) {
+                       adapter.setData(response.body().getData(), hint);
+                       spinner.setAdapter(adapter);
 
+                       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                           @Override
+                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                               if (position!=0) {
+                                   getSpinnerData(activity,spinner2,adapter2,hint2,method2);
+                               }
+                           }
+                           @Override
+                           public void onNothingSelected(AdapterView<?> parent) {
+
+                           }
+                       });
+                   }
+
+               }catch (Exception e)
+               {
+
+               }
             }
 
             @Override
-            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
+            public void onFailure(Call<GeneralResponse> call, Throwable t) {
 
             }
         });
+
     }
 }
+//
+//     HelperMethod.onLoadImageFromUrl(itemPostIVPostImage,postsFull.get(position).getData().getData().get(0).getThumbnailFullPath(),context);
+//             itemPostIBFavorite.setOnClickListener(new View.OnClickListener() {
+//
+//@Override
+//public void onClick(View v) {
+//        boolean isFavourite = readState();
+//
+//        if (isFavourite) {
+//        itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
+//        isFavourite = false;
+//        saveState(activity,isFavourite);
+//
+//        } else {
+//        itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_border_24dp);
+//        isFavourite = true;
+//        saveState(activity,isFavourite);
+//
+//        }
+//
+//        }
+//        });
+//
+//        }
 
 //        apiService.getGovernorates().enqueue(new Callback<GeneralResponse>() {
 //            @Override
@@ -116,9 +139,6 @@ public class General {
 //
 //            }
 //        });
-
-
-
 
 
 //    private void getCities() {
@@ -175,6 +195,28 @@ public class General {
 //            @Override
 //            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
 //                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+//    private void search() {
+//        fragmentPostETSearch.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                filter(s.toString());
+//            }
+//
+//            private void filter(String post) {
+//
 //            }
 //        });
 //    }

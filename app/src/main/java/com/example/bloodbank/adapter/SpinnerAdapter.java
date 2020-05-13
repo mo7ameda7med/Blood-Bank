@@ -50,8 +50,8 @@ public class SpinnerAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.items_custom_spinner, null);
 
         TextView names = (TextView) view.findViewById(R.id.item_custom_spinner_Tv);
-
         names.setText(generalResponseDataList.get(i).getName());
+
         selectedId = generalResponseDataList.get(i).getId();
 
         return view;

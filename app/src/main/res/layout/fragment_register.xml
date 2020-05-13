@@ -177,7 +177,7 @@
                 android:src="@drawable/ic_arrow_downward_black_24dp" />
 
             <Spinner
-                android:id="@+id/register_fragment_ET_city"
+                android:id="@+id/register_fragment_ET_Governorates"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
@@ -216,7 +216,7 @@
                 android:src="@drawable/ic_arrow_downward_black_24dp" />
 
             <Spinner
-                android:id="@+id/register_fragment_ET_capital"
+                android:id="@+id/register_fragment_ET_city"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"

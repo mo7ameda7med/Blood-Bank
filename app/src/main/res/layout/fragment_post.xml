@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.homeFragment.postsFragment.PostFragment">
+    tools:context=".view.fragment.homeFragment.PostFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineStart"
@@ -38,7 +38,6 @@
         android:layout_marginTop="@dimen/_16sdp"
         android:drawableStart="@drawable/ic_search_black_24dp"
         android:hint="ادخل كلمه البحث هنا"
-        android:maxLines="1"
         android:textColorHint="@color/colorAccent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fragment_post_sp_category"

@@ -33,6 +33,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bloodbank.network.api.APIClient.getClient;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,7 +42,6 @@ import retrofit2.Response;
 public class RegisterFragment extends BaseFragment {
 
 
-    private int governoratesId = 1;
     private EditText registerFragmentETName;
     private EditText registerFragmentETEmail;
     private TextView registerFragmentETBirthDate;
@@ -50,8 +51,7 @@ public class RegisterFragment extends BaseFragment {
     private EditText registerFragmentETConfirmPassword;
     private Spinner registerFragmentETBloodTypes;
     private Spinner registerFragmentETCity;
-    private Spinner registerFragmentETCapital;
-    private ApiService apiService;
+    private Spinner registerFragmentETGovernorates;
     private SpinnerAdapter GovernoratesAdapter, CitiesAdapter, bloodTypesAdapter;
 
 
@@ -69,25 +69,19 @@ public class RegisterFragment extends BaseFragment {
         initView(view);
 
         bloodTypesAdapter = new SpinnerAdapter(getActivity());
-//        General.getSpinnerData(getActivity(), registerFragmentETBloodTypes, bloodTypesAdapter, getString(R.string.Wait), );
+        General.getSpinnerData(getActivity(), registerFragmentETBloodTypes, bloodTypesAdapter, getString(R.string.اختر_فصيله_الدم), getClient().getBloodType());
 
         GovernoratesAdapter = new SpinnerAdapter(getActivity());
-//        CitiesAdapter = new SpinnerAdapter(getActivity());
-//        General.getSpinnerData(getActivity(), registerFragmentETCity, GovernoratesAdapter,
-//                getString(R.string.Wait), , registerFragmentETCapital
-//                , CitiesAdapter, getString(R.string.Wait));
+        CitiesAdapter = new SpinnerAdapter(getActivity());
+        General.getSpinnerData(getActivity(),registerFragmentETGovernorates,GovernoratesAdapter,getString(R.string.Wait),getClient().getGovernorates(),registerFragmentETCity,
+                CitiesAdapter,getString(R.string.Wait),getClient().getCities(GovernoratesAdapter.selectedId));
 
-
-//        getBloodTypes();
-//        getGovernorates();
-//        getCities();
         return view;
     }
 
     private void initView(View view) {
-        apiService = APIClient.getClient().create(ApiService.class);
         registerFragmentETCity = (Spinner) view.findViewById(R.id.register_fragment_ET_city);
-        registerFragmentETCapital = (Spinner) view.findViewById(R.id.register_fragment_ET_capital);
+        registerFragmentETGovernorates = (Spinner) view.findViewById(R.id.register_fragment_ET_Governorates);
         registerFragmentETBloodTypes = (Spinner) view.findViewById(R.id.register_fragment_ET_blood_spinner);
         registerFragmentETBirthDate = view.findViewById(R.id.register_fragment_ET_birth_date);
         registerFragmentETName = view.findViewById(R.id.register_fragment_ET_name);
@@ -128,11 +122,6 @@ public class RegisterFragment extends BaseFragment {
 
     }
 
-    private void setData(Client data) {
-
-    }
-
-    //
     private void registerClient() {
         String name = registerFragmentETName.getText().toString();
         String email = registerFragmentETEmail.getText().toString();
@@ -141,16 +130,15 @@ public class RegisterFragment extends BaseFragment {
         String password = registerFragmentETPassword.getText().toString();
         String history = registerFragmentETName.getText().toString();
         String confirmPassword = registerFragmentETConfirmPassword.getText().toString();
-        String city = registerFragmentETCity.getSelectedItem().toString();
+        String Governorates = registerFragmentETGovernorates.getSelectedItem().toString();
         String BloodTypes = registerFragmentETBloodTypes.getSelectedItem().toString();
 
-        apiService.register(name, email, birthDate, city, phone, history, password, confirmPassword, BloodTypes).enqueue(new Callback<Auth>() {
+        getClient().register(name, email, birthDate, Governorates, phone, history, password, confirmPassword, BloodTypes).enqueue(new Callback<Auth>() {
             @Override
             public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
 
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
-
                 }
             }
 
