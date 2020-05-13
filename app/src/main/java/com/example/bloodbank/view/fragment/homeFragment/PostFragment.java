@@ -73,7 +73,6 @@ public class PostFragment extends BaseFragment {
         // Inflate the layout for this fragment
 
         initFragment();
-
         View view = inflater.inflate(R.layout.fragment_post, container, false);
         ButterKnife.bind(this,view);
         setupRv();
@@ -125,8 +124,8 @@ public class PostFragment extends BaseFragment {
             public void onResponse(@NotNull Call<Posts> call, @NotNull Response<Posts> response) {
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
-                    maxPage = response.body().getData().getLastPage();
                     posts.addAll(response.body().getData().getData());
+                    maxPage = response.body().getData().getLastPage();
                 }
 
             }

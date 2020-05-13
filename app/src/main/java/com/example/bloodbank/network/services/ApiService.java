@@ -4,6 +4,7 @@ import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
 import com.example.bloodbank.network.models.posts.Posts;
+import com.example.bloodbank.network.models.toggleFavourite.ToggleFavourite;
 
 
 import retrofit2.Call;
@@ -66,8 +67,9 @@ public interface ApiService {
     Call<Posts> getPost(@Query("api_token") String apiToken,
                         @Query("page") int page);
 
-//    @POST(SERVICE_post_toggle_favourite)
-//    Call<>
+    @POST(SERVICE_post_toggle_favourite)
+    Call<ToggleFavourite> ToggleFavourite(@Field("post_id") int postId,
+                                          @Field("api_token") String apiToken);
 
 
 }

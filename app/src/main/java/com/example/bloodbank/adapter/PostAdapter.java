@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -15,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbank.R;
-import com.example.bloodbank.network.models.posts.Posts;
 import com.example.bloodbank.network.models.posts.PostsData;
+import com.example.bloodbank.network.models.toggleFavourite.ToggleFavourite;
 import com.example.bloodbank.util.HelperMethod;
 
 import java.util.ArrayList;
@@ -24,6 +23,11 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.bloodbank.network.api.APIClient.getClient;
 
 public class
 
@@ -34,7 +38,6 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private Activity activity;
     private List<PostsData> posts = new ArrayList<>();
 
-//    private List<RestaurantClientData> restaurantDataList = new ArrayList<>();
 
     public PostAdapter(Context context, Activity activity, List<PostsData> posts) {
         this.context = context;
@@ -60,6 +63,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.position= position;
         HelperMethod.onLoadImageFromUrl(holder.itemPostIVPostImage, posts.get(position).getThumbnailFullPath(), context);
         holder.itemPostBtnPosts.setText(posts.get(position).getTitle());
+
         if (posts.get(position).getIsFavourite()) {
             holder.itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
         } else {
@@ -103,6 +107,19 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     } else {
                         itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_border_24dp);
                     }
+                    getClient().ToggleFavourite(posts.get(position).getId(),"Zz9HuAjCY4kw2Ma2XaA6x7T5O3UODws1UakXI9vgFVSoY3xUXYOarHX2VH27").enqueue(new Callback<ToggleFavourite>() {
+                        @Override
+                        public void onResponse(Call<ToggleFavourite> call, Response<ToggleFavourite> response) {
+                            if(response.body().getStatus()==1)
+                            {
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ToggleFavourite> call, Throwable t) {
+
+                        }
+                    });
 
 
                     break;
