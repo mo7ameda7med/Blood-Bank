@@ -44,6 +44,13 @@ public class ConfirmPasswordFragment extends BaseFragment {
     EditText confirmPasswordFragmentETConfirmPassword;
     @BindView(R.id.confirm_password_fragment_btn)
     Button confirmPasswordFragmentBtn;
+    String phone;
+    public ConfirmPasswordFragment(String phone) {
+        this.phone = phone;
+    }
+
+
+
 
 
     public ConfirmPasswordFragment() {
@@ -55,46 +62,53 @@ public class ConfirmPasswordFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_confirm_password, container, false);
         initFragment();
+        View view = inflater.inflate(R.layout.fragment_confirm_password, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
 
-//    private void newPassword() {
-//        HelperMethod.showProgressDialog(getActivity(), "wait");
-//        String code = confirmPasswordFragmentETCode.getText().toString();
-//        String password = confirmPasswordFragmentETPassword.getText().toString();
-//        String ConfirmPassword = confirmPasswordFragmentETConfirmPassword.getText().toString();
-//
-//        getClient().newPassword(code, password, ConfirmPassword,).enqueue(new Callback<NewPassword>() {
-//            @Override
-//            public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
-//                HelperMethod.dismissProgressDialog();
-//                assert response.body() != null;
-//                if (response.body().getStatus() == 1) {
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(@NotNull Call<NewPassword> call, @NotNull Throwable t) {
-//
-//            }
-//        });
-//
-//    }
+    private void newPassword() {
+        String code = confirmPasswordFragmentETCode.getText().toString();
+        String password = confirmPasswordFragmentETPassword.getText().toString();
+        String ConfirmPassword = confirmPasswordFragmentETConfirmPassword.getText().toString();
+
+        getClient().newPassword(phone,code, password, ConfirmPassword).enqueue(new Callback<NewPassword>() {
+            @Override
+            public void onResponse(@NotNull Call<NewPassword> call, @NotNull Response<NewPassword> response) {
+                HelperMethod.dismissProgressDialog();
+                assert response.body() != null;
+                if (response.body().getStatus() == 1) {
+                    Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                    HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),R.id.user_cycle_activity,new LoginFragment());
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<NewPassword> call, @NotNull Throwable t) {
+
+            }
+        });
+
+    }
+    @OnClick(R.id.confirm_password_fragment_btn)
+    public void onViewClicked() {
+        newPassword();
+    }
 
     @Override
     public void onBack() {
-        super.onBack();
     }
 
 
-    @OnClick(R.id.confirm_password_fragment_btn)
-    public void onViewClicked() {
-//        newPassword();
-        HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), R.id.user_cycle_activity, new LoginFragment());
-    }
+
 }
+
+
 

@@ -1,5 +1,6 @@
 package com.example.bloodbank.network.services;
 
+import com.example.bloodbank.network.models.donation.Donation;
 import com.example.bloodbank.network.models.generalResponse.GeneralResponse;
 import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.models.newPassword.NewPassword;
@@ -11,11 +12,14 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_BLOOD_TYPES;
+import static com.example.bloodbank.network.api.APIConstants.SERVICE_CATEGORIES;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_CITIES;
+import static com.example.bloodbank.network.api.APIConstants.SERVICE_DONATION;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_GOVERNORATES;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_LOGIN;
 import static com.example.bloodbank.network.api.APIConstants.SERVICE_NEW_PASSWORD;
@@ -70,6 +74,25 @@ public interface ApiService {
     @POST(SERVICE_post_toggle_favourite)
     Call<ToggleFavourite> ToggleFavourite(@Field("post_id") int postId,
                                           @Field("api_token") String apiToken);
+
+    @GET(SERVICE_CATEGORIES)
+    Call<GeneralResponse> getCategories();
+
+    @GET(SERVICE_POSTS)
+    Call<Posts> getPostsFilter(@Query("api_token") String apiToken,
+                               @Query("page") int page,
+                               @Query("keyword") String keyword,
+                               @Query("category_id") int categoryId);
+
+    @GET(SERVICE_DONATION)
+    Call<Donation> getDonation(@Query("api_token") String apiToken,
+                               @Query("page") int page);
+
+    @GET(SERVICE_DONATION)
+    Call<Donation> getDonationFilter(@Query("api_token") String apiToken,
+                                     @Query("page") int page,
+                                     @Query("blood_type_id") int bloodTypeId,
+                                     @Query("category_id") int categoryId);
 
 
 }

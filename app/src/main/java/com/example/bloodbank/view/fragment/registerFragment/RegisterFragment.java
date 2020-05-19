@@ -1,7 +1,6 @@
 package com.example.bloodbank.view.fragment.registerFragment;
 
-import android.app.Activity;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.SpinnerAdapter;
-import com.example.bloodbank.network.api.APIClient;
 import com.example.bloodbank.network.models.DateTxt;
 import com.example.bloodbank.network.models.login.Auth;
-import com.example.bloodbank.network.models.login.Client;
-import com.example.bloodbank.network.services.ApiService;
+
 import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.HelperMethod;
 import com.example.bloodbank.view.fragment.BaseFragment;
@@ -66,7 +63,6 @@ public class RegisterFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         initFragment();
-        initView(view);
 
         bloodTypesAdapter = new SpinnerAdapter(getActivity());
         General.getSpinnerData(getActivity(), registerFragmentETBloodTypes, bloodTypesAdapter, getString(R.string.اختر_فصيله_الدم), getClient().getBloodType());
@@ -76,13 +72,14 @@ public class RegisterFragment extends BaseFragment {
         General.getSpinnerData(getActivity(),registerFragmentETGovernorates,GovernoratesAdapter,getString(R.string.Wait),getClient().getGovernorates(),registerFragmentETCity,
                 CitiesAdapter,getString(R.string.Wait),getClient().getCities(GovernoratesAdapter.selectedId));
 
+        initView(view);
         return view;
     }
 
     private void initView(View view) {
-        registerFragmentETCity = (Spinner) view.findViewById(R.id.register_fragment_ET_city);
-        registerFragmentETGovernorates = (Spinner) view.findViewById(R.id.register_fragment_ET_Governorates);
-        registerFragmentETBloodTypes = (Spinner) view.findViewById(R.id.register_fragment_ET_blood_spinner);
+        registerFragmentETCity =  view.findViewById(R.id.register_fragment_ET_city);
+        registerFragmentETGovernorates =  view.findViewById(R.id.register_fragment_ET_Governorates);
+        registerFragmentETBloodTypes =  view.findViewById(R.id.register_fragment_ET_blood_spinner);
         registerFragmentETBirthDate = view.findViewById(R.id.register_fragment_ET_birth_date);
         registerFragmentETName = view.findViewById(R.id.register_fragment_ET_name);
         registerFragmentETEmail = view.findViewById(R.id.register_fragment_ET_email);
@@ -114,8 +111,6 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 registerClient();
-                HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),
-                        R.id.user_cycle_activity, new LoginFragment());
             }
         });
 
@@ -139,6 +134,9 @@ public class RegisterFragment extends BaseFragment {
 
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
+
+                    HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(),
+                            R.id.user_cycle_activity, new LoginFragment());
                 }
             }
 

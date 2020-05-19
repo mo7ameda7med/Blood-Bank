@@ -47,6 +47,7 @@ public class General {
             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
                try {
                    if (response.body().getStatus() == 1) {
+
                        adapter.setData(response.body().getData(), hint);
                        spinner.setAdapter(adapter);
 
@@ -76,6 +77,28 @@ public class General {
             }
         });
 
+    }
+    public static void getCategories(Activity activity, Spinner spinner, SpinnerAdapter adapter, String hint, Call<GeneralResponse> method) {
+        method.enqueue(new Callback<GeneralResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<GeneralResponse> call, @NotNull Response<GeneralResponse> response) {
+                try {
+                    assert response.body() != null;
+                    if (response.body().getStatus() == 1) {
+                        adapter.setData(response.body().getData(), hint);
+                        spinner.setAdapter(adapter);
+
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<GeneralResponse> call, @NotNull Throwable t) {
+
+            }
+        });
     }
 }
 //

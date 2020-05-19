@@ -2,16 +2,10 @@ package com.example.bloodbank.view.fragment.homeFragment;
 
 
 import android.os.Bundle;
-
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.EditText;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.PostAdapter;
-import com.example.bloodbank.network.api.APIClient;
+import com.example.bloodbank.adapter.SpinnerAdapter;
 import com.example.bloodbank.network.models.posts.Posts;
 import com.example.bloodbank.network.models.posts.PostsData;
-import com.example.bloodbank.network.services.ApiService;
+import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.OnEndLess;
 import com.example.bloodbank.view.fragment.BaseFragment;
 
@@ -48,7 +42,6 @@ import static com.example.bloodbank.network.api.APIClient.getClient;
  * A simple {@link Fragment} subclass.
  */
 public class PostFragment extends BaseFragment {
-//        implements Filterable {
 
 
     @BindView(R.id.fragment_post_sp_category)
@@ -57,10 +50,13 @@ public class PostFragment extends BaseFragment {
     EditText fragmentPostETSearch;
     @BindView(R.id.fragment_post_RV_post)
     RecyclerView fragmentPostRVPost;
-    private PostAdapter postAdapter;
     private List<PostsData> posts = new ArrayList<>();
     private Integer maxPage = 0;
     private OnEndLess onEndLess;
+    private SpinnerAdapter categoriesAdapter;
+    private PostAdapter postAdapter;
+    private boolean filter = false;
+
 
     public PostFragment() {
         // Required empty public constructor
@@ -71,61 +67,57 @@ public class PostFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         initFragment();
         View view = inflater.inflate(R.layout.fragment_post, container, false);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
+
         setupRv();
-        getPost(1);
+        getPost(1, getClient().getPost("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1));
+
+        categoriesAdapter = new SpinnerAdapter(getActivity());
+        General.getCategories(getActivity(), fragmentPostSpCategory, categoriesAdapter, getString(R.string.Wait), getClient().getCategories());
+
+        fragmentPostETSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFilter(1);
+            }
+        });
+
+
         return view;
 
     }
 
+    private void onFilter(int page) {
+        filter = true;
+        onEndLess.current_page = 1;
+        onEndLess.previous_page = 1;
+        onEndLess.totalItemCount = 0;
+        maxPage = 0;
+        postAdapter = new PostAdapter(getContext(), getActivity(), posts);
+        fragmentPostRVPost.setAdapter(postAdapter);
+        Call<Posts> call = getClient().getPostsFilter("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1
+                , fragmentPostETSearch.getText().toString(),
+                categoriesAdapter.selectedId);
+        getPost(page, call);
+    }
 
 
+    private void getPosts(int page) {
+        Call<Posts> call = getClient().getPost("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1);
+        getPost(page, call);
+    }
 
-//    @Override
-//    public Filter getFilter() {
-//        return postFilter;
-//    }
-
-//    private Filter postFilter = new Filter() {
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Posts> postsList = new ArrayList<>();
-//            if (constraint == null || constraint.length() == 0) {
-//                postsList.addAll(posts);
-//            } else {
-//                String filterPattern = constraint.toString().toLowerCase().trim();
-//                for (Posts post : posts) {
-//                    if (post.getData().getData().get(0).getTitle().toLowerCase().contains(filterPattern)) {
-//                        postsList.add(post);
-//                    }
-//                }
-//            }
-//            FilterResults filterResults = new FilterResults();
-//            filterResults.values = postsList;
-//
-//            return filterResults;
-//        }
-
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            posts.clear();
-//            posts.addAll((List) results.values);
-//            postAdapter.notifyDataSetChanged();
-//        }
-//    };
-
-
-    private void getPost(int page) {
-        getClient().getPost("Zz9HuAjCY4kw2Ma2XaA6x7T5O3UODws1UakXI9vgFVSoY3xUXYOarHX2VH27", page).enqueue(new Callback<Posts>() {
+    private void getPost(int page, Call<Posts> call) {
+        call.enqueue(new Callback<Posts>() {
             @Override
             public void onResponse(@NotNull Call<Posts> call, @NotNull Response<Posts> response) {
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
-                    posts.addAll(response.body().getData().getData());
                     maxPage = response.body().getData().getLastPage();
+                    posts.addAll(response.body().getData().getData());
+                    postAdapter.notifyDataSetChanged();
                 }
 
             }
@@ -138,8 +130,6 @@ public class PostFragment extends BaseFragment {
     }
 
     private void setupRv() {
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Objects.requireNonNull(getActivity())
                 .getApplicationContext(),
                 LinearLayoutManager.VERTICAL
@@ -152,13 +142,16 @@ public class PostFragment extends BaseFragment {
                 if (current_page <= maxPage) {
                     if (maxPage != 0 && current_page != 1) {
                         onEndLess.previous_page = current_page;
-                        getPost(current_page);
+                        if (filter) {
+                            onFilter(current_page);
+                        } else {
+                            getPosts(current_page);
+                        }
 
                     } else {
                         onEndLess.current_page = onEndLess.previous_page;
                     }
                 }
-
             }
         };
         fragmentPostRVPost.addOnScrollListener(onEndLess);
@@ -166,4 +159,10 @@ public class PostFragment extends BaseFragment {
         fragmentPostRVPost.setAdapter(postAdapter);
 
     }
+
+
+    public void onBack() {
+        super.onBack();
+    }
+
 }

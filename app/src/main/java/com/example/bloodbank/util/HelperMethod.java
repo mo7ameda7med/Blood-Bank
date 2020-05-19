@@ -132,3 +132,35 @@ public class HelperMethod {
     }
 
 }
+//    @Override
+//    public Filter getFilter() {
+//        return postFilter;
+//    }
+
+//    private Filter postFilter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            List<Posts> postsList = new ArrayList<>();
+//            if (constraint == null || constraint.length() == 0) {
+//                postsList.addAll(posts);
+//            } else {
+//                String filterPattern = constraint.toString().toLowerCase().trim();
+//                for (Posts post : posts) {
+//                    if (post.getData().getData().get(0).getTitle().toLowerCase().contains(filterPattern)) {
+//                        postsList.add(post);
+//                    }
+//                }
+//            }
+//            FilterResults filterResults = new FilterResults();
+//            filterResults.values = postsList;
+//
+//            return filterResults;
+//        }
+
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            posts.clear();
+//            posts.addAll((List) results.values);
+//            postAdapter.notifyDataSetChanged();
+//        }
+//    };

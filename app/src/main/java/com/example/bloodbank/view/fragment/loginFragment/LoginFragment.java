@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -64,10 +65,9 @@ public class LoginFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        initFragment();
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
-        initFragment();
         return view;
     }
 
@@ -82,7 +82,13 @@ public class LoginFragment extends BaseFragment {
         getClient().login(phone, password).enqueue(new Callback<Auth>() {
             @Override
             public void onResponse(@NotNull Call<Auth> call, @NotNull Response<Auth> response) {
-
+                assert response.body() != null;
+                if (response.body().getStatus() == 1) {
+                    Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                } else {
+                    Toast.makeText(getActivity(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -101,7 +107,6 @@ public class LoginFragment extends BaseFragment {
                 break;
             case R.id.login_fragment_btn_login:
                 Login();
-                startActivity(new Intent(getActivity(),MainActivity.class));
                 break;
             case R.id.login_fragment_btn_register:
                 HelperMethod.replaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), R.id.user_cycle_activity, new RegisterFragment());

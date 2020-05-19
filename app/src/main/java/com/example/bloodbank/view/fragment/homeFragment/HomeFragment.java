@@ -13,6 +13,8 @@ import com.example.bloodbank.adapter.ViewPagerWithFragmentAdapter;
 import com.example.bloodbank.view.fragment.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -37,14 +39,14 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        initFragment();
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
-        initFragment();
-        setupSlider(view);
+        setupSlider();
         return view;
     }
 
-    private void setupSlider(View view) {
+    private void setupSlider() {
         viewPagerWithFragmentAdapter = new ViewPagerWithFragmentAdapter(getFragmentManager());
         viewPagerWithFragmentAdapter.addPager(new DonationFragment(), "طلبات التبرع");
         viewPagerWithFragmentAdapter.addPager(new PostFragment(), "المقالات");
@@ -54,7 +56,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     public void onBack() {
-        baseActivity.superOnBackPressed();
+        (getActivity()).finish();
     }
 
 }

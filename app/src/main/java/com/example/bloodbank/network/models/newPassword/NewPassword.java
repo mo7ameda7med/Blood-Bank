@@ -34,10 +34,6 @@ public class NewPassword {
         this.phone = phone;
     }
 
-    public NewPassword(String phone) {
-        this.phone = phone;
-    }
-
 
     public Integer getStatus() {
         return status;
