@@ -63,7 +63,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private void setData(ViewHolder holder, int position) {
         HelperMethod.onLoadImageFromUrl(holder.itemPostIVPostImage, posts.get(position).getThumbnailFullPath(), context);
         holder.itemPostBtnPosts.setText(posts.get(position).getTitle());
-        holder.position= position;
+        holder.position = position;
         if (posts.get(position).getIsFavourite()) {
             holder.itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
         } else {
@@ -95,7 +95,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
             view = itemView;
-            ButterKnife.bind(this,view);
+            ButterKnife.bind(this, view);
         }
 
         @OnClick({R.id.item_post_IB_favorite})
@@ -114,13 +114,11 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         }
 
-        private void getToggleFavourite()
-        {
-            getClient().ToggleFavourite(itemPostIBFavorite.getId(),"mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf").enqueue(new Callback<ToggleFavourite>() {
+        private void getToggleFavourite() {
+            getClient().ToggleFavourite(itemPostIBFavorite.getId(), "mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf").enqueue(new Callback<ToggleFavourite>() {
                 @Override
                 public void onResponse(Call<ToggleFavourite> call, Response<ToggleFavourite> response) {
-                    if(response.body().getStatus()==1)
-                    {
+                    if (response.body().getStatus() == 1) {
                     }
                 }
 

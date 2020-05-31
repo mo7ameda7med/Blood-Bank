@@ -27,7 +27,7 @@ DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHolder> {
 
     private Context context;
     private Activity activity;
-    private List<DonationData> donationDataList;
+    private List<DonationData> donationDataList=new ArrayList<>();
 
     public DonationAdapter(Context context, Activity activity, List<DonationData> donationDataList) {
         this.context = context;
@@ -41,6 +41,10 @@ DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHolder> {
                 parent, false);
 
         return new ViewHolder(view);
+    }
+    @Override
+    public int getItemCount() {
+        return donationDataList.size();
     }
 
     @Override
@@ -83,10 +87,7 @@ DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHolder> {
             ButterKnife.bind(this, view);
         }
     }
-    @Override
-    public int getItemCount() {
-        return donationDataList.size();
-    }
+
 
     @OnClick({R.id.item_donation_I_btn_contact, R.id.item_donation_I_btn_info})
     public void onViewClicked(View view) {

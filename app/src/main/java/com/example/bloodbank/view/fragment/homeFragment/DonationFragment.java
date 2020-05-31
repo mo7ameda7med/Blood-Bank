@@ -73,6 +73,8 @@ public class DonationFragment extends BaseFragment {
 
         GovernoratesAdapter = new SpinnerAdapter(getActivity());
         General.getSpinnerData(getActivity(), fragmentDonationETGovernorates, GovernoratesAdapter, getString(R.string.Wait), getClient().getGovernorates());
+
+
         setupRv();
         getDonation(1,getClient().getDonation("W4mx3VMIWetLcvEcyF554CfxjZHwdtQldbdlCl2XAaBTDIpNjKO1f7CHuwKl",1));
         return view;
@@ -106,8 +108,6 @@ public class DonationFragment extends BaseFragment {
         fragmentDonationRVDonation.addOnScrollListener(onEndLess);
         donationAdapter = new DonationAdapter(getContext(), getActivity(), donation);
         fragmentDonationRVDonation.setAdapter(donationAdapter);
-        getDonation(1);
-
     }
 
     private void onFilter(int page) {

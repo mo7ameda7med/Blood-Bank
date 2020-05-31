@@ -72,6 +72,7 @@ public interface ApiService {
                         @Query("page") int page);
 
     @POST(SERVICE_post_toggle_favourite)
+    @FormUrlEncoded
     Call<ToggleFavourite> ToggleFavourite(@Field("post_id") int postId,
                                           @Field("api_token") String apiToken);
 

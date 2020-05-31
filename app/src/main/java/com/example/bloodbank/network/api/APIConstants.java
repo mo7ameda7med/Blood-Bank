@@ -13,7 +13,7 @@ public class APIConstants {
     public static final String SERVICE_POSTS="posts";
     public static final String SERVICE_post_toggle_favourite="post-toggle-favourite";
     public static final String SERVICE_CATEGORIES="categories";
-    public static final String SERVICE_DONATION="donation";
+    public static final String SERVICE_DONATION="donation-requests";
 
 
 

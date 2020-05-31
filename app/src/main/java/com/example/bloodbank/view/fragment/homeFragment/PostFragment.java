@@ -91,21 +91,16 @@ public class PostFragment extends BaseFragment {
 
     private void onFilter(int page) {
         filter = true;
-        onEndLess.current_page = 1;
-        onEndLess.previous_page = 1;
-        onEndLess.totalItemCount = 0;
-        maxPage = 0;
-        postAdapter = new PostAdapter(getContext(), getActivity(), posts);
-        fragmentPostRVPost.setAdapter(postAdapter);
-        Call<Posts> call = getClient().getPostsFilter("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1
+
+        Call<Posts> call = getClient().getPostsFilter("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", page
                 , fragmentPostETSearch.getText().toString(),
                 categoriesAdapter.selectedId);
         getPost(page, call);
     }
 
 
-    private void getPosts(int page) {
-        Call<Posts> call = getClient().getPost("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1);
+    private void getPost(int page) {
+        Call<Posts> call = getClient().getPost("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", page);
         getPost(page, call);
     }
 
@@ -115,6 +110,17 @@ public class PostFragment extends BaseFragment {
             public void onResponse(@NotNull Call<Posts> call, @NotNull Response<Posts> response) {
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
+
+                    if (page ==1) {
+                        onEndLess.current_page = 1;
+                        onEndLess.previous_page = 1;
+                        onEndLess.totalItemCount = 0;
+                        maxPage = 0;
+                        posts = new ArrayList<>();
+                        postAdapter = new PostAdapter(getContext(), getActivity(), posts);
+                        fragmentPostRVPost.setAdapter(postAdapter);
+                    }
+
                     maxPage = response.body().getData().getLastPage();
                     posts.addAll(response.body().getData().getData());
                     postAdapter.notifyDataSetChanged();
@@ -145,7 +151,7 @@ public class PostFragment extends BaseFragment {
                         if (filter) {
                             onFilter(current_page);
                         } else {
-                            getPosts(current_page);
+                            getPost(current_page);
                         }
 
                     } else {
