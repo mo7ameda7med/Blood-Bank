@@ -2,9 +2,12 @@
 <resources>
     <color name="colorAccent">#9A0B0B</color>
     <color name="colorPrimaryDark">#ED5107</color>
-    <color name="colorPrimary">#F4F4F4</color>
+    <color name="colorPrimary">#D3D0D0</color>
 
     <color name="colorRed">#9A0B0B</color>
     <color name="colorBrown">#772904</color>
+    <color name="colorDonation">#ced0cd</color>
+    <color name="colorMO">#acb0ab</color>
+
 
 </resources>

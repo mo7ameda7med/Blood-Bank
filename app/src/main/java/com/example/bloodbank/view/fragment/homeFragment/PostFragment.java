@@ -20,6 +20,7 @@ import com.example.bloodbank.network.models.posts.Posts;
 import com.example.bloodbank.network.models.posts.PostsData;
 import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.OnEndLess;
+import com.example.bloodbank.util.SharedPreferencesManger;
 import com.example.bloodbank.view.fragment.BaseFragment;
 
 
@@ -36,6 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.bloodbank.network.api.APIClient.getClient;
+import static com.example.bloodbank.util.SharedPreferencesManger.UserData;
 
 
 /**

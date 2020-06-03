@@ -18,6 +18,7 @@ import com.example.bloodbank.network.api.APIClient;
 import com.example.bloodbank.network.models.login.Auth;
 import com.example.bloodbank.network.services.ApiService;
 import com.example.bloodbank.util.HelperMethod;
+import com.example.bloodbank.util.SharedPreferencesManger;
 import com.example.bloodbank.view.activity.MainActivity;
 import com.example.bloodbank.view.fragment.BaseFragment;
 import com.example.bloodbank.view.fragment.registerFragment.RegisterFragment;
@@ -35,6 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.bloodbank.network.api.APIClient.getClient;
+import static com.example.bloodbank.util.SharedPreferencesManger.UserData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,6 +57,7 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.login_fragment_btn_register)
     Button loginFragmentBtnRegister;
     private ApiService apiService;
+    private Auth auth;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -66,6 +69,7 @@ public class LoginFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         initFragment();
+        SharedPreferencesManger.saveData(getActivity(),UserData,auth);
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         return view;

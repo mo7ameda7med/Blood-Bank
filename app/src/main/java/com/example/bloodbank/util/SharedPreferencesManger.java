@@ -10,6 +10,8 @@ public class SharedPreferencesManger {
 
     public static SharedPreferences sharedPreferences = null;
     private static String LANG = "LANG";
+    public static final String UserData = "UserData";
+
 
 
     public static void setSharedPreferences(Activity activity) {
