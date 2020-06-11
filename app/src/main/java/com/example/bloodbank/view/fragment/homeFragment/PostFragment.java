@@ -19,9 +19,12 @@ import com.example.bloodbank.adapter.SpinnerAdapter;
 import com.example.bloodbank.network.models.posts.Posts;
 import com.example.bloodbank.network.models.posts.PostsData;
 import com.example.bloodbank.util.General;
+import com.example.bloodbank.util.HelperMethod;
 import com.example.bloodbank.util.OnEndLess;
-import com.example.bloodbank.util.SharedPreferencesManger;
+
+import com.example.bloodbank.util.OnclickItem;
 import com.example.bloodbank.view.fragment.BaseFragment;
+import com.example.bloodbank.view.fragment.loginFragment.LoginFragment;
 
 
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +40,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.bloodbank.network.api.APIClient.getClient;
-import static com.example.bloodbank.util.SharedPreferencesManger.UserData;
 
 
 /**
@@ -59,7 +61,6 @@ public class PostFragment extends BaseFragment {
     private PostAdapter postAdapter;
     private boolean filter = false;
 
-
     public PostFragment() {
         // Required empty public constructor
     }
@@ -72,7 +73,6 @@ public class PostFragment extends BaseFragment {
         initFragment();
         View view = inflater.inflate(R.layout.fragment_post, container, false);
         ButterKnife.bind(this, view);
-
         setupRv();
         getPost(1, getClient().getPost("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1));
 
@@ -85,7 +85,6 @@ public class PostFragment extends BaseFragment {
                 onFilter(1);
             }
         });
-
 
         return view;
 
@@ -113,7 +112,7 @@ public class PostFragment extends BaseFragment {
                 assert response.body() != null;
                 if (response.body().getStatus() == 1) {
 
-                    if (page ==1) {
+                    if (page == 1) {
                         onEndLess.current_page = 1;
                         onEndLess.previous_page = 1;
                         onEndLess.totalItemCount = 0;
@@ -170,7 +169,8 @@ public class PostFragment extends BaseFragment {
 
 
     public void onBack() {
-        super.onBack();
+        HelperMethod.replaceFragment(getFragmentManager(), R.id.user_cycle_activity, new LoginFragment());
     }
+
 
 }

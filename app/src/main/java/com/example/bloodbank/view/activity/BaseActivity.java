@@ -6,6 +6,7 @@ import com.example.bloodbank.view.fragment.BaseFragment;
 
 public class BaseActivity extends AppCompatActivity {
 
+
     public BaseFragment baseFragment;
 
 

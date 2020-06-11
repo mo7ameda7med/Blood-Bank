@@ -12,6 +12,7 @@ import com.example.bloodbank.R;
 import com.example.bloodbank.adapter.ViewPagerWithFragmentAdapter;
 import com.example.bloodbank.view.fragment.BaseFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.Objects;
 

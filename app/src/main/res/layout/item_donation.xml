@@ -16,12 +16,14 @@
            android:id="@+id/item_donation_I_btn_contact"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/btn_slider_image"/>
+            android:background="@drawable/btn_slider_image"
+            android:layout_margin="@dimen/_2sdp"/>
         <ImageButton
             android:id="@+id/item_donation_I_btn_info"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/shape_circil"/>
+            android:background="@drawable/shape_circil"
+            android:layout_margin="@dimen/_2sdp"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
