@@ -20,10 +20,11 @@
         android:id="@+id/PostsDetailsFragment_v_details"
         android:layout_width="match_parent"
         android:background="@drawable/post_details"
-        android:layout_height="@dimen/_400sdp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PostsDetailsFragment_post_image"/>
 
     <ImageView
         android:id="@+id/PostsDetailsFragment_iv_favorite"

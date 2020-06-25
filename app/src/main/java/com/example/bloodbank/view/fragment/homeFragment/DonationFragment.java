@@ -17,7 +17,6 @@ import com.example.bloodbank.adapter.DonationAdapter;
 import com.example.bloodbank.adapter.SpinnerAdapter;
 import com.example.bloodbank.network.models.donation.Donation;
 import com.example.bloodbank.network.models.donation.DonationData;
-import com.example.bloodbank.network.models.posts.Posts;
 import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.OnEndLess;
 import com.example.bloodbank.view.fragment.BaseFragment;
@@ -106,7 +105,7 @@ public class DonationFragment extends BaseFragment {
             }
         };
         fragmentDonationRVDonation.addOnScrollListener(onEndLess);
-        donationAdapter = new DonationAdapter(getContext(), getActivity(), donation);
+        donationAdapter = new DonationAdapter( getActivity(), donation);
         fragmentDonationRVDonation.setAdapter(donationAdapter);
     }
 
@@ -117,7 +116,7 @@ public class DonationFragment extends BaseFragment {
         onEndLess.totalItemCount = 0;
         maxPage = 0;
         donation = new ArrayList<>();
-        donationAdapter = new DonationAdapter(getContext(), getActivity(), donation);
+        donationAdapter = new DonationAdapter( getActivity(), donation);
         fragmentDonationRVDonation.setAdapter(donationAdapter);
 
         Call<Donation> call = getClient().getDonationFilter("mg1i1XHW5bHMJzjxi6ymJbVOflHiaCH5v8cYjS1aOaMphzubY4DtOsyrtIUf", 1

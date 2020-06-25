@@ -17,7 +17,8 @@ import com.example.bloodbank.R;
 import com.example.bloodbank.network.models.posts.PostsData;
 import com.example.bloodbank.network.models.toggleFavourite.ToggleFavourite;
 import com.example.bloodbank.util.HelperMethod;
-import com.example.bloodbank.util.PrefManager;
+import com.example.bloodbank.view.activity.BaseActivity;
+import com.example.bloodbank.view.fragment.homeFragment.PostsDetailsFragment;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class
 PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
+    private BaseActivity baseActivity;
     private Context context;
     private Activity activity;
     private List<PostsData> posts;
@@ -43,6 +45,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public PostAdapter(Context context, Activity activity, List<PostsData> posts) {
         this.context = context;
         this.activity = activity;
+        baseActivity = (BaseActivity) activity;
         this.posts = posts;
     }
 
@@ -61,9 +64,9 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     private void setData(ViewHolder holder, int position) {
+        holder.position = position;
         HelperMethod.onLoadImageFromUrl(holder.itemPostIVPostImage, posts.get(position).getThumbnailFullPath(), context);
         holder.itemPostBtnPosts.setText(posts.get(position).getTitle());
-        holder.position = position;
         if (posts.get(position).getIsFavourite()) {
             holder.itemPostIBFavorite.setBackgroundResource(R.drawable.ic_favorite_black_24dp);
         } else {
@@ -82,7 +85,8 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         return posts.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         public int position;
         private View view;
         @BindView(R.id.item_post_IV_post_image)
@@ -96,9 +100,17 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             super(itemView);
             view = itemView;
             ButterKnife.bind(this, view);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PostsDetailsFragment postsDetailsFragment = new PostsDetailsFragment();
+                    postsDetailsFragment.post = posts.get(position);
+                    HelperMethod.replaceFragment(baseActivity.getSupportFragmentManager(), R.id.user_cycle_activity, postsDetailsFragment);
+                }
+            });
         }
 
-        @OnClick({R.id.item_post_IB_favorite})
+        @OnClick({R.id.item_post_IB_favorite, R.id.item_post_Btn_posts})
         public void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.item_post_IB_favorite:
@@ -111,6 +123,7 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     getToggleFavourite();
 
                     break;
+
             }
         }
 
@@ -129,5 +142,6 @@ PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             });
 
         }
+
     }
 }

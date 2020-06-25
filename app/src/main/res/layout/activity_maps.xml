@@ -30,7 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/MapsActivity_et_search_location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,8 +42,30 @@
             android:hint="Enter Address, City or Zip Code"
             android:imeOptions="actionSearch"
             />
+    </RelativeLayout>
 
-</RelativeLayout>
+
+
+
+    <!--        <LinearLayout-->
+<!--            android:id="@+id/MapsActivity_rl_search_location"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            android:layout_marginRight="@dimen/_10sdp"-->
+<!--            android:layout_marginLeft="@dimen/_10sdp"-->
+<!--            android:elevation="@dimen/_10sdp"-->
+<!--            android:background="@drawable/white_border"-->
+<!--            >-->
+<!--            <fragment-->
+<!--                android:id="@+id/place_autocomplete_fragment"-->
+<!--                android:name="com.google.android.libraries.places.compat.ui.PlaceAutocompleteFragment"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content" />-->
+<!--        </LinearLayout>-->
+
+
+
     <ImageView
         android:src="@drawable/ic_gps_fixed_black_24dp"
         android:id="@+id/MapsActivity_image_gps"

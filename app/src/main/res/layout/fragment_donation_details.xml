@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/donation_details_fragment_toolbar_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -47,6 +48,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp">
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineStart"
                 android:layout_width="wrap_content"
@@ -67,8 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:textColor="@color/colorAccent"
                 android:gravity="end"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_18sdp"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@+id/guidelineStart"
@@ -90,9 +92,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="end"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_18sdp"
-                android:gravity="end"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@+id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/view1" />
@@ -101,8 +103,8 @@
                 android:id="@+id/view2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_age" />
@@ -124,8 +126,8 @@
                 android:id="@+id/view3"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_blood_type" />
@@ -147,8 +149,8 @@
                 android:id="@+id/view4"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_number" />
@@ -170,8 +172,8 @@
                 android:id="@+id/view5"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_hospital" />
@@ -193,45 +195,47 @@
                 android:id="@+id/view6"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_address" />
+
             <TextView
-            android:id="@+id/donation_details_fragment_tv_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:gravity="end"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_18sdp"
-            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-            app:layout_constraintTop_toBottomOf="@id/view6" />
+                android:id="@+id/donation_details_fragment_tv_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:gravity="end"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/view6" />
 
             <View
                 android:id="@+id/view7"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/colorDonation"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/colorDonation"
                 app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
                 app:layout_constraintStart_toStartOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/donation_details_fragment_tv_phone" />
+
             <TextView
                 android:id="@+id/donation_details_fragment_tv_details"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_150sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:background="@drawable/edit_text_background"
-                app:layout_constraintStart_toStartOf="@id/guidelineStart"
-                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-                app:layout_constraintTop_toBottomOf="@+id/view7"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:gravity="end"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/_18sdp"
-                />
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
 
             <fragment
                 android:id="@+id/map"
@@ -243,7 +247,23 @@
                 app:layout_constraintStart_toStartOf="@+id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@+id/donation_details_fragment_tv_details"
                 tools:context=".view.activity.MapsActivity" />
+
+            <Button
+                android:id="@+id/donation_details_fragment_btn_contact"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/ارسال"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintTop_toBottomOf="@id/map"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                android:background="@drawable/btn_background2"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +25,6 @@ import com.example.bloodbank.util.General;
 import com.example.bloodbank.util.HelperMethod;
 import com.example.bloodbank.util.OnEndLess;
 
-import com.example.bloodbank.util.OnclickItem;
 import com.example.bloodbank.view.fragment.BaseFragment;
 import com.example.bloodbank.view.fragment.loginFragment.LoginFragment;
 
@@ -45,7 +47,7 @@ import static com.example.bloodbank.network.api.APIClient.getClient;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PostFragment extends BaseFragment {
+public class PostFragment extends BaseFragment  {
 
 
     @BindView(R.id.fragment_post_sp_category)
@@ -167,8 +169,8 @@ public class PostFragment extends BaseFragment {
 
     }
 
-
     public void onBack() {
+        assert getFragmentManager() != null;
         HelperMethod.replaceFragment(getFragmentManager(), R.id.user_cycle_activity, new LoginFragment());
     }
 
